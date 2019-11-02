@@ -1,4 +1,4 @@
-package eu.rtsketo.agileactors.viewModel;
+package eu.rtsketo.agileactors.viewmodel;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -6,7 +6,7 @@ import com.google.gson.GsonBuilder;
 import java.io.IOException;
 
 import eu.rtsketo.agileactors.ReposActivity;
-import eu.rtsketo.agileactors.gitModel.Repository;
+import eu.rtsketo.agileactors.datamodel.Repository;
 
 public class ReposModel {
     public ReposModel(ReposActivity activity) throws IOException {

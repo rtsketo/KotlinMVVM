@@ -1,4 +1,4 @@
-package eu.rtsketo.agileactors.gitModel
+package eu.rtsketo.agileactors.datamodel
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

@@ -16,9 +16,9 @@ import android.view.MenuItem;
 import java.io.IOException;
 import java.util.Arrays;
 
-import eu.rtsketo.agileactors.gitModel.Repository;
-import eu.rtsketo.agileactors.viewModel.ReposAdapter;
-import eu.rtsketo.agileactors.viewModel.ReposModel;
+import eu.rtsketo.agileactors.datamodel.Repository;
+import eu.rtsketo.agileactors.viewmodel.ReposAdapter;
+import eu.rtsketo.agileactors.viewmodel.ReposModel;
 
 public class ReposActivity extends AppCompatActivity {
 
@@ -29,7 +29,7 @@ public class ReposActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
 

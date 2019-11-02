@@ -5,14 +5,32 @@
     android:id="@+id/repoItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
     android:orientation="vertical">
 
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier"
+        android:id="@+id/barrierV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="owner"
+        tools:layout_editor_absoluteX="411dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrierH"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="ownerName,description"
+        app:constraint_referenced_ids="description"
         tools:layout_editor_absoluteX="403dp"
         tools:layout_editor_absoluteY="165dp" />
 
@@ -26,7 +44,7 @@
         app:layout_constraintBottom_toTopOf="@+id/updated"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/ownerAvatar"
+        app:layout_constraintStart_toEndOf="@+id/barrierV"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:text="hiloo" />
@@ -38,28 +56,40 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ownerAvatar"
+        app:layout_constraintStart_toEndOf="@+id/barrierV"
         app:layout_constraintTop_toBottomOf="@+id/repoName"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
 
-    <ImageView
-        android:id="@+id/ownerAvatar"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/owner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@mipmap/ic_launcher" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/ownerName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/ownerAvatar"
-        app:layout_constraintStart_toStartOf="@+id/ownerAvatar"
-        app:layout_constraintTop_toBottomOf="@+id/ownerAvatar"
-        tools:text="test" />
+        <TextView
+            android:id="@+id/ownerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ownerAvatar"
+            tools:text="test" />
+
+        <ImageView
+            android:id="@+id/ownerAvatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="centerInside"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@mipmap/ic_launcher" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/language"
@@ -69,9 +99,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/barrier"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintStart_toEndOf="@+id/watchers"
+        app:layout_constraintTop_toBottomOf="@+id/barrierH"
         tools:text="Java" />
 
     <ImageView
@@ -80,7 +110,7 @@
         android:layout_height="14dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/language"
-        app:layout_constraintStart_toEndOf="@+id/language"
+        app:layout_constraintStart_toStartOf="@+id/barrierV"
         app:layout_constraintTop_toTopOf="@+id/language"
         app:srcCompat="@drawable/symbol_fork" />
 
@@ -88,6 +118,7 @@
         android:id="@+id/forks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/forksView"
         app:layout_constraintStart_toEndOf="@+id/forksView"
@@ -108,6 +139,7 @@
         android:id="@+id/stars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
         app:layout_constraintBottom_toBottomOf="@+id/starsView"
         app:layout_constraintStart_toEndOf="@+id/starsView"
         app:layout_constraintTop_toTopOf="@+id/starsView"
@@ -124,31 +156,33 @@
         app:srcCompat="@drawable/symbol_issues" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/issues"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
         app:layout_constraintBottom_toBottomOf="@+id/issuesView"
         app:layout_constraintStart_toEndOf="@+id/issuesView"
         app:layout_constraintTop_toTopOf="@+id/issuesView"
         tools:text="10" />
 
     <ImageView
-        android:id="@+id/pullsView"
+        android:id="@+id/watchView"
         android:layout_width="18dp"
         android:layout_height="18dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView6"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="@+id/textView6"
-        app:srcCompat="@drawable/symbol_pullr" />
+        app:layout_constraintBottom_toBottomOf="@+id/issues"
+        app:layout_constraintStart_toEndOf="@+id/issues"
+        app:layout_constraintTop_toTopOf="@+id/issues"
+        app:srcCompat="@drawable/symbol_eye" />
 
     <TextView
-        android:id="@+id/pulls"
+        android:id="@+id/watchers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/pullsView"
-        app:layout_constraintStart_toEndOf="@+id/pullsView"
-        app:layout_constraintTop_toTopOf="@+id/pullsView"
+        android:layout_marginStart="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/watchView"
+        app:layout_constraintStart_toEndOf="@+id/watchView"
+        app:layout_constraintTop_toTopOf="@+id/watchView"
         tools:text="8" />
 
     <TextView
@@ -158,11 +192,11 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/pulls"
-        app:layout_constraintTop_toTopOf="@+id/barrier"
+        app:layout_constraintStart_toEndOf="@+id/watchers"
+        app:layout_constraintTop_toTopOf="@+id/barrierH"
         tools:text="Updated on Feb 7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
