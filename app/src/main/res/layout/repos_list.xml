@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ReposActivity"
+    tools:context=".views.ReposActivity"
     tools:showIn="@layout/repos_activity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:animateLayoutChanges="true" />
+        android:animateLayoutChanges="false" />
 </androidx.core.widget.NestedScrollView>

@@ -1,6 +1,5 @@
 package eu.rtsketo.agileactors.viewmodel;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,22 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Date;
 
 import eu.rtsketo.agileactors.R;
 import eu.rtsketo.agileactors.datamodel.Repository;
 
 public class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.ReposViewHolder> {
 
-    private List<Repository> repoList;
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
-    SimpleDateFormat zTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
-    public ReposAdapter(List<Repository> repoList) {
-        this.repoList = repoList;
-}
-
+    private ArrayList<Repository> repoList;
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+    public ReposAdapter() { repoList = new ArrayList<>(); }
 
     @Override
     public ReposViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -81,15 +76,21 @@ public class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.ReposViewHol
         }
     }
 
-    private String formatDate(String date) {
+    public void add(Repository repo) {
+        repoList.add(repo);
+        notifyItemInserted(repoList.size() - 1);
+    }
+
+    public void clear() {
+        int size = repoList.size();
+        repoList.clear();
+        notifyItemRangeRemoved(0, size);
+    }
+
+    private String formatDate(Date date) {
         String updated = "";
         if (date != null)
-            try {
-                updated = sdf.format(zTime.parse(date));
-            } catch (ParseException e) {
-                Log.e("Date parse exception!", e.toString());
-            }
-
+            updated = sdf.format(date);
         return updated;
     }
 }

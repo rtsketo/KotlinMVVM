@@ -7,15 +7,15 @@ import java.io.InputStream;
 import java.net.URLConnection;
 import java.net.URL;
 
-public class SiteReader {
+class SiteReader {
     private String site;
     private String content;
 
-    public SiteReader(String site) {
+    SiteReader(String site) {
         this.site = site;
     }
 
-    public String getContent() throws IOException {
+    String getContent() throws IOException {
         if (content == null)
             content = getPage(site);
         return content;

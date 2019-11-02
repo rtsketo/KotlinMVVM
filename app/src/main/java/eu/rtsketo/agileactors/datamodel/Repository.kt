@@ -2,6 +2,7 @@ package eu.rtsketo.agileactors.datamodel
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 class Repository {
     @Expose
@@ -19,7 +20,7 @@ class Repository {
 
     @Expose
     @SerializedName("updated_at")
-    val updated: String? = null
+    val updated: Date? = null
 
     @Expose
     @SerializedName("stargazers_count")
