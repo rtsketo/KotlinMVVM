@@ -1,4 +1,4 @@
-package eu.rtsketo.agileactors.gitPOJO
+package eu.rtsketo.agileactors.gitModel
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

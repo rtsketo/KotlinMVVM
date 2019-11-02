@@ -16,7 +16,9 @@ import android.view.MenuItem;
 import java.io.IOException;
 import java.util.Arrays;
 
-import eu.rtsketo.agileactors.gitPOJO.Repository;
+import eu.rtsketo.agileactors.gitModel.Repository;
+import eu.rtsketo.agileactors.viewModel.ReposAdapter;
+import eu.rtsketo.agileactors.viewModel.ReposModel;
 
 public class ReposActivity extends AppCompatActivity {
 

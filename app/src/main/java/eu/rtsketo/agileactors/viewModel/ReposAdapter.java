@@ -1,4 +1,4 @@
-package eu.rtsketo.agileactors;
+package eu.rtsketo.agileactors.viewModel;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import eu.rtsketo.agileactors.gitPOJO.Repository;
+import eu.rtsketo.agileactors.R;
+import eu.rtsketo.agileactors.gitModel.Repository;
 
 public class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.ReposViewHolder> {
 

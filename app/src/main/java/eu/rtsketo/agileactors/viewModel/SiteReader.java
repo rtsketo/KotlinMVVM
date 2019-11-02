@@ -1,4 +1,4 @@
-package eu.rtsketo.agileactors;
+package eu.rtsketo.agileactors.viewModel;
 
 import org.apache.commons.io.IOUtils;
 
