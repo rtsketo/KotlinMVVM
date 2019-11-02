@@ -7,28 +7,38 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class ScrollingActivity extends AppCompatActivity {
+import java.io.IOException;
+import java.util.Arrays;
+
+import eu.rtsketo.agileactors.gitPOJO.Repository;
+
+public class ReposActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scrolling);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setContentView(R.layout.repos_activity);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
+
+            new Thread(() ->
+            {
+                try {
+                    new ReposModel(this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }).start();
     }
 
     @Override
@@ -50,5 +60,14 @@ public class ScrollingActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void setData(Repository[] repos) {
+
+        RecyclerView recycler = findViewById(R.id.recyclerView);
+        recycler.setLayoutManager(new LinearLayoutManager(this));
+
+        ReposAdapter adapter = new ReposAdapter(Arrays.asList(repos));
+        recycler.setAdapter(adapter);
     }
 }
