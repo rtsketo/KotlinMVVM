@@ -1,17 +1,12 @@
 package eu.rtsketo.agileactors.views
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.internal.NavigationMenu
-import com.google.android.material.navigation.NavigationView
-
 import eu.rtsketo.agileactors.R
 import eu.rtsketo.agileactors.datamodel.Repository
 import eu.rtsketo.agileactors.viewmodel.ReposAdapter
@@ -21,6 +16,9 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.ReplaySubject
 import kotlinx.android.synthetic.main.repos_activity.*
 
+/**
+ * Main activity of the app.
+ */
 class ReposActivity : AppCompatActivity() {
     private val site = "https://api.github.com/orgs/square/repos"
     private val adapter = ReposAdapter()
@@ -41,6 +39,9 @@ class ReposActivity : AppCompatActivity() {
         refresh()
     }
 
+    /**
+     * Fetches the repositories of the given site.
+     */
     private fun refresh() {
         adapter.clear()
         val repoSubscription: ReplaySubject<Repository> = ReplaySubject.create()
@@ -48,6 +49,11 @@ class ReposActivity : AppCompatActivity() {
         repoSubscription.subscribe(observer)
     }
 
+    /**
+     * Displays an error message when internet
+     * connection isn't available or when the
+     * given url is unreachable.
+     */
     private fun displayError(message: String?) {
         AlertDialog.Builder(this)
                 .setTitle("Error")

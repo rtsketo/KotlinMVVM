@@ -1,5 +1,6 @@
 package eu.rtsketo.agileactors.viewmodel
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,8 +18,9 @@ import eu.rtsketo.agileactors.R
 import eu.rtsketo.agileactors.datamodel.Repository
 
 class ReposAdapter : RecyclerView.Adapter<ReposAdapter.ReposViewHolder>() {
-    private val repoList: ArrayList<Repository> = ArrayList()
+    @SuppressLint("SimpleDateFormat")
     private val sdf = SimpleDateFormat("dd/MM/yy")
+    private val repoList: ArrayList<Repository> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReposViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -41,6 +43,9 @@ class ReposAdapter : RecyclerView.Adapter<ReposAdapter.ReposViewHolder>() {
         holder.updated.text = formatDate(repo.updated)
     }
 
+    /**
+     * View holder for the recycler view.
+     */
     inner class ReposViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         internal var repoName: TextView = view.findViewById(R.id.repoName)
         internal var description: TextView = view.findViewById(R.id.description)

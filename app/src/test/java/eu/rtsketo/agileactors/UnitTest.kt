@@ -18,9 +18,8 @@ import org.junit.Assert.assertTrue
 
 
 /**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see [Testing documentation](http://d.android.com/tools/testing)
+ * Unit test demonstration, checking
+ * if a repo can be fetched correctly.
  */
 class UnitTest {
     companion object {
@@ -69,7 +68,7 @@ class UnitTest {
         waitInit()
         var exists = false
         for (repo in repoList)
-            if (repo.owner != null && repo.owner!!.name == "rtsketo") {
+            if (repo.owner?.name == "rtsketo") {
                 exists = true
                 break
             }

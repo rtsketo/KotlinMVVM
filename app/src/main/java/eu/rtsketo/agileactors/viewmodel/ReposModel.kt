@@ -4,9 +4,9 @@ import android.util.Log
 import com.google.gson.GsonBuilder
 import eu.rtsketo.agileactors.datamodel.Repository
 import io.reactivex.subjects.ReplaySubject
+import org.apache.commons.io.IOUtils
 import java.io.IOException
-import java.net.InetAddress
-import java.net.UnknownHostException
+import java.net.URL
 
 class ReposModel(private val repoSubscription: ReplaySubject<Repository>, private val site: String) {
     init {
@@ -14,9 +14,13 @@ class ReposModel(private val repoSubscription: ReplaySubject<Repository>, privat
         thread.start()
     }
 
+    /**
+     * Function for emitting the fetched
+     * repositories to the subscribers.
+     */
     private fun populateSubscription() {
         try {
-            val json = SiteReader(site).getContent()
+            val json = getSiteContent()
             val builder = GsonBuilder()
             builder.excludeFieldsWithoutExposeAnnotation()
             val gson = builder.setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create()
@@ -30,19 +34,38 @@ class ReposModel(private val repoSubscription: ReplaySubject<Repository>, privat
                     else "The requested repository can't be reached!"
             repoSubscription.onError(Throwable(error))
             Log.e("Connection Error", "Site can't be reached!")
-            repoSubscription.onComplete()
         }
 
     }
 
-    private fun hasInternet(): Boolean {
-        try {
-            val address = InetAddress.getByName("www.github.com")
-            return !address.equals("")
-        } catch (e: UnknownHostException) {
-            Log.e("Connection Error", "No internet!", e)
-        }
+    /**
+     * Function for fetching the
+     * contents of the given site.
+     */
+    private fun getSiteContent(): String {
+        val url = URL(site).openConnection()
+        url.connect()
 
-        return false
+        val input = url.getInputStream()
+        val response = IOUtils.toString(input, "UTF-8")
+
+        input.close()
+        return response
+    }
+
+    /**
+     * Function for checking there's
+     * an internet connection.
+     */
+    private fun hasInternet(): Boolean {
+        return try {
+            val host = URL("https://www.github.com").openConnection()
+            host.connectTimeout = 10000
+            host.connect()
+            true
+        } catch (e: Exception) {
+            Log.w("Connection Error", "No internet!", e)
+            false
+        }
     }
 }
