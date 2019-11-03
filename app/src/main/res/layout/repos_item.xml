@@ -88,7 +88,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@mipmap/ic_launcher" />
+            tools:srcCompat="@mipmap/ic_launcher"
+            android:contentDescription="@string/owner_s_avatar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -112,7 +113,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/language"
         app:layout_constraintStart_toStartOf="@+id/barrierV"
         app:layout_constraintTop_toTopOf="@+id/language"
-        app:srcCompat="@drawable/symbol_fork" />
+        app:srcCompat="@drawable/symbol_fork"
+        android:contentDescription="@string/number_of_forks" />
 
     <TextView
         android:id="@+id/forks"
@@ -133,7 +135,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/forks"
         app:layout_constraintStart_toEndOf="@+id/forks"
         app:layout_constraintTop_toTopOf="@+id/forks"
-        app:srcCompat="@drawable/symbol_star" />
+        app:srcCompat="@drawable/symbol_star"
+        android:contentDescription="@string/number_of_stars" />
 
     <TextView
         android:id="@+id/stars"
@@ -153,7 +156,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/stars"
         app:layout_constraintStart_toEndOf="@+id/stars"
         app:layout_constraintTop_toTopOf="@+id/stars"
-        app:srcCompat="@drawable/symbol_issues" />
+        app:srcCompat="@drawable/symbol_issues"
+        android:contentDescription="@string/number_of_issues" />
 
     <TextView
         android:id="@+id/issues"
@@ -173,7 +177,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/issues"
         app:layout_constraintStart_toEndOf="@+id/issues"
         app:layout_constraintTop_toTopOf="@+id/issues"
-        app:srcCompat="@drawable/symbol_eye" />
+        app:srcCompat="@drawable/symbol_eye"
+        android:contentDescription="@string/number_of_watchers" />
 
     <TextView
         android:id="@+id/watchers"

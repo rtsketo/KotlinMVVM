@@ -5,9 +5,8 @@ import com.google.gson.annotations.SerializedName
 
 class Owner {
     @Expose @SerializedName("login")
-    val name: String = ""
+    var name: String = ""
 
     @Expose @SerializedName("avatar_url")
-    val avatar: String? = null
-
+    var avatar: String? = null
 }

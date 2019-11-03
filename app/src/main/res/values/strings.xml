@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Square\'s GitHub</string>
     <string name="action_settings">Settings</string>
+    <string name="owner_s_avatar">Owner\'s Avatar</string>
+    <string name="number_of_forks">Number of Forks</string>
+    <string name="number_of_stars">Number of Stars</string>
+    <string name="number_of_watchers">Number of Watchers</string>
+    <string name="number_of_issues">Number of Issues</string>
 </resources>

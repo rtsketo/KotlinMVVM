@@ -6,39 +6,39 @@ import java.util.*
 
 class Repository {
     @Expose
-    val name: String = ""
+    var name: String = ""
 
     @Expose
-    val owner: Owner? = null
+    var owner: Owner? = null
 
     @Expose
     val description: String = ""
 
     @Expose
     @SerializedName("html_url")
-    val html: String? = null
+    var html: String? = null
 
     @Expose
     @SerializedName("updated_at")
-    val updated: Date? = null
+    var updated: Date? = null
 
     @Expose
     @SerializedName("stargazers_count")
-    val stars: Int = 0
+    var stars: Int = 0
 
     @Expose
     @SerializedName("watchers_count")
-    val watchers: Int = 0
+    var watchers: Int = 0
 
     @Expose
     @SerializedName("language")
-    val lang: String = ""
+    var lang: String = ""
 
     @Expose
     @SerializedName("forks_count")
-    val forks: Int = 0
+    var forks: Int = 0
 
     @Expose
     @SerializedName("open_issues_count")
-    val issues: Int = 0
+    var issues: Int = 0
 }
